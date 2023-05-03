@@ -36,6 +36,9 @@ export const ITEMS = {
     book: new Item("Livre", "book.webp"),
     leather: new Item("Cuir", "leather.webp"),
     obsidian: new Item("Obsidienne", "obsidian.webp"),
+    ironPickaxe: new Item("Pioche en fer", "iron-pickaxe.webp"),
+    anvil: new Item("Enclume", "anvil.webp"),
+    blockOfIron: new Item("Bloc de fer", "block-of-iron.webp"),
 };
 
 ITEMS.watch.sources.push(new Craft([
@@ -46,6 +49,24 @@ ITEMS.watch.sources.push(new Craft([
     {
         item: ITEMS.goldIngot,
         quantity: 4
+    }
+]));
+
+ITEMS.redstone.sources.push(new Craft([
+    {
+        item: ITEMS.ironPickaxe,
+        quantity: 1
+    }
+]));
+
+ITEMS.ironPickaxe.sources.push(new Craft([
+    {
+        item: ITEMS.ironIngot,
+        quantity: 3
+    },
+    {
+        item: ITEMS.stick,
+        quantity: 2
     }
 ]));
 
@@ -174,6 +195,24 @@ ITEMS.enchantedDiamondPickaxe.sources.push(new Craft([
     }
 ]));
 
+ITEMS.anvil.sources.push(new Craft([
+    {
+        item: ITEMS.blockOfIron,
+        quantity: 3
+    },
+    {
+        item: ITEMS.ironIngot,
+        quantity: 4
+    }
+]));
+
+ITEMS.blockOfIron.sources.push(new Craft([
+    {
+        item: ITEMS.ironIngot,
+        quantity: 9
+    }
+]));
+
 ITEMS.enchantingTable.sources.push(new Craft([
     {
         item: ITEMS.diamond,
@@ -249,3 +288,6 @@ ITEMS.enchantingTable.wiki = "https://minecraft.fandom.com/fr/wiki/Table_d%27enc
 ITEMS.book.wiki = "https://minecraft.fandom.com/fr/wiki/Livre";
 ITEMS.leather.wiki = "https://minecraft.fandom.com/fr/wiki/Cuir";
 ITEMS.obsidian.wiki = "https://minecraft.fandom.com/fr/wiki/Obsidienne";
+ITEMS.ironPickaxe.wiki = "https://minecraft.fandom.com/fr/wiki/Pioche";
+ITEMS.anvil.wiki = "https://minecraft.fandom.com/fr/wiki/Enclume";
+ITEMS.blockOfIron.wiki = "https://minecraft.fandom.com/fr/wiki/Bloc_de_fer";

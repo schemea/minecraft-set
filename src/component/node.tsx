@@ -13,7 +13,6 @@ export function NodeComponent({ node }: Props) {
     const onRef = useCallback(function (element: SVGElement | null) {
         if (element && entity.wiki) {
             element.addEventListener("mousedown", ev => {
-                console.log(ev.buttons);
                 if (ev.buttons !== 2) window.open(entity.wiki);
             });
             element.classList.add("clickable");
