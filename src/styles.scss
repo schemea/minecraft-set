@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+
+@font-face {
+  font-family: Minecraft;
+  src: url(assets/minecraft.otf);
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: Minecraft;
+  src: url(assets/minecraft-bold.otf);
+  font-weight: bold;
+}
+
+body {
+  font-family: Roboto, sans-serif;
+}
+
+hr {
+  padding: 1px 0;
+  margin: 20px 0;
+}
+
+#root {
+  margin: auto;
+  width: fit-content;
+}
