@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { GraphNode } from "../graph/node";
 import { useAsset } from "../hook/asset";
 
@@ -10,8 +10,18 @@ export function NodeComponent({ node }: Props) {
     const { entity, x, y, width, height } = node;
     const image = useAsset("assets/" + entity.image);
 
+    const onRef = useCallback(function (element: SVGElement | null) {
+        if (element && entity.wiki) {
+            element.addEventListener("mousedown", ev => {
+                console.log(ev.buttons);
+                if (ev.buttons !== 2) window.open(entity.wiki);
+            });
+            element.classList.add("clickable");
+        }
+    }, []);
+
     return (
-        <g transform={ `translate(${ x } ${ y })` } clipPath="url(#item-clip)">
+        <g transform={ `translate(${ x } ${ y })` } clipPath="url(#item-clip)" ref={ onRef }>
             <title>{ entity.name }</title>
             <rect x={ 0 } y={ 0 } width={ width } height={ height } fill={ entity.enchanted ? "#99c" : "#999" }/>
             { image && (

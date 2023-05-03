@@ -5,6 +5,7 @@ export interface Entity {
     name: string
     image: string
     enchanted?: boolean
+    wiki?: string
 }
 
 export function isItem(entity: Entity): entity is Item {

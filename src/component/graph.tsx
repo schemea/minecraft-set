@@ -77,6 +77,10 @@ export function GraphComponent({ items, index }: Props) {
                     stroke: #555;
                     stroke-width: 2;
                     &#125;
+
+                    .clickable &#123;
+                        cursor: pointer;
+                    &#125;
                 </style>
                 <text fontSize={ 35 } fontWeight="bold" y={ 32 } x={ 2 } fill="black"
                       stroke="black">Set { index }</text>
