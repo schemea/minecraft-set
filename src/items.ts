@@ -31,7 +31,11 @@ export const ITEMS = {
     diamondPickaxe: new Item("Pioche en diamant", "diamond-pickaxe.webp"),
     enchantedDiamondPickaxe: new Item("Pioche en diamant enchantée", "diamond-pickaxe.webp"),
     diamondSword: new Item("Epée en diamant", "diamond-sword.webp"),
-    enchantedDiamondSword: new Item("Epée en diamant enchantée", "diamond-sword.webp")
+    enchantedDiamondSword: new Item("Epée en diamant enchantée", "diamond-sword.webp"),
+    enchantingTable: new Item("Table d'enchantement", "enchanting-table.webp"),
+    book: new Item("Livre", "book.webp"),
+    leather: new Item("Cuir", "leather.webp"),
+    obsidian: new Item("Obsidienne", "obsidian.webp"),
 };
 
 ITEMS.watch.sources.push(new Craft([
@@ -163,8 +167,39 @@ ITEMS.enchantedDiamondPickaxe.sources.push(new Craft([
     {
         item: ITEMS.diamondPickaxe,
         quantity: 1
+    },
+    {
+        item: ITEMS.enchantingTable,
+        quantity: 1
     }
 ]));
+
+ITEMS.enchantingTable.sources.push(new Craft([
+    {
+        item: ITEMS.diamond,
+        quantity: 2
+    },
+    {
+        item: ITEMS.book,
+        quantity: 1
+    },
+    {
+        item: ITEMS.obsidian,
+        quantity: 4
+    },
+]));
+
+ITEMS.book.sources.push(new Craft([
+    {
+        item: ITEMS.leather,
+        quantity: 1
+    },
+    {
+        item: ITEMS.paper,
+        quantity: 3
+    }
+]));
+
 ITEMS.enchantedDiamondPickaxe.enchanted = true;
 
 ITEMS.diamondSword.sources.push(new Craft([
@@ -210,3 +245,7 @@ ITEMS.netherBrickStairs.wiki = "https://minecraft.fandom.com/fr/wiki/Escalier#Fa
 ITEMS.netherBricks.wiki = "https://minecraft.fandom.com/fr/wiki/Briques_du_Nether";
 ITEMS.netherBrick.wiki = "https://minecraft.fandom.com/fr/wiki/Brique_du_Nether";
 ITEMS.netherRack.wiki = "https://minecraft.fandom.com/wiki/Netherrack";
+ITEMS.enchantingTable.wiki = "https://minecraft.fandom.com/fr/wiki/Table_d%27enchantement";
+ITEMS.book.wiki = "https://minecraft.fandom.com/fr/wiki/Livre";
+ITEMS.leather.wiki = "https://minecraft.fandom.com/fr/wiki/Cuir";
+ITEMS.obsidian.wiki = "https://minecraft.fandom.com/fr/wiki/Obsidienne";

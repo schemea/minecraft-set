@@ -115,12 +115,11 @@ export function createGraph(root: Item, quantity = 1) {
             if (group.parent) {
                 group.parent.group.areas.push(box);
                 const nx = (box.x1 + box.x2 - SIZE) / 2;
-                {
-                    let p: GraphNode | undefined = group.parent;
-                    while (p && nx > p.x) {
-                        p.x = nx;
-                        p = p.group.parent;
-                    }
+                propagateGroupPosition(group);
+
+                const inheritedGroupX = group.parent.x + group.parent.group.x - nx;
+                if (group.x < inheritedGroupX) {
+                    groupX = group.x = inheritedGroupX;
                 }
             }
             groupX += x;
@@ -132,13 +131,14 @@ export function createGraph(root: Item, quantity = 1) {
     for (const layer of layers) {
         for (const nodeGroup of layer.nodeGroups) {
             if (nodeGroup.parent) {
-                nodeGroup.x += nodeGroup.parent.group.x;
+                // nodeGroup.x += nodeGroup.parent.group.x;
                 nodeGroup.y += nodeGroup.parent.group.y;
 
-                for (const node of nodeGroup.nodes) {
-                    node.x += nodeGroup.x;
-                    node.y += nodeGroup.y;
-                }
+            }
+
+            for (const node of nodeGroup.nodes) {
+                node.x += nodeGroup.x;
+                node.y += nodeGroup.y;
             }
         }
     }
@@ -172,4 +172,36 @@ function findLinks(layers: GraphLayer[]): Link[] {
                 }
             };
         });
+}
+
+
+function getBounds(group: GraphNodeGroup) {
+    let x = group.x;
+    let y = group.y;
+    x += Math.max(...group.nodes.map(node => node.x + node.width));
+    y += Math.max(...group.nodes.map(node => node.y + node.height));
+
+    return new Box(group.x, group.y, x, y);
+}
+
+
+function propagateGroupPosition(group: GraphNodeGroup) {
+    const box = getBounds(group);
+    const nx = (box.x1 + box.x2 - SIZE) / 2;
+
+    const p = group.parent;
+    if (p && nx > (p.x + p.group.x)) {
+        const index = p.group.nodes.findIndex(value => p === value);
+        if (index === 0) {
+            p.group.x = nx;
+        } else {
+            const dx = nx - (p.x + p.group.x);
+            for (let i = index; i < p.group.nodes.length; i++) {
+                const current = p.group.nodes[index];
+                current.x += dx;
+            }
+        }
+
+        propagateGroupPosition(p.group);
+    }
 }
