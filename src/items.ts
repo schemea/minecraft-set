@@ -3,12 +3,14 @@ import { Craft, Milk, Smelt } from "./model/source";
 
 
 export const ITEMS = {
+    activatorRails: new Item("Rails déclencheurs", "activator-rails.webp"),
     stick: new Item("Bâton", "stick.webp"),
     rawGold: new Item("Or brut", "raw-gold.webp"),
     goldIngot: new Item("Lingot d'or", "gold-ingot.webp"),
     ironIngot: new Item("Lingot de fer", "iron-ingot.webp"),
     diamond: new Item("Diamant", "diamond.webp"),
     redstone: new Item("Poudre de redstone", "redstone.webp"),
+    redstoneTorch: new Item("Tourche de redstone", "redstone-torch.webp"),
     watch: new Item("Montre", "watch.webp"),
     apple: new Item("Pomme", "apple.webp"),
     goldenApple: new Item("Pomme dorée", "golden-apple.webp"),
@@ -39,6 +41,8 @@ export const ITEMS = {
     ironPickaxe: new Item("Pioche en fer", "iron-pickaxe.webp"),
     anvil: new Item("Enclume", "anvil.webp"),
     blockOfIron: new Item("Bloc de fer", "block-of-iron.webp"),
+    lavaBucket: new Item("Seau de lave", "lava-bucket.webp"),
+    goldenPickaxe: new Item("Pioche en or", "golden-pickaxe.webp"),
 };
 
 ITEMS.watch.sources.push(new Craft([
@@ -256,6 +260,43 @@ ITEMS.enchantedDiamondSword.sources.push(new Craft([ {
     item: ITEMS.diamondSword,
     quantity: 1
 } ]));
+
+ITEMS.activatorRails.sources.push(new Craft([
+    {
+        item: ITEMS.redstoneTorch,
+        quantity: 1
+    },
+    {
+        item: ITEMS.ironIngot,
+        quantity: 6
+    },
+    {
+        item: ITEMS.stick,
+        quantity: 2
+    }
+]));
+
+ITEMS.redstoneTorch.sources.push(new Craft([
+    {
+        item: ITEMS.redstone,
+        quantity: 1
+    },
+    {
+        item: ITEMS.stick,
+        quantity: 1
+    }
+]));
+
+ITEMS.goldenPickaxe.sources.push(new Craft([
+    {
+        item: ITEMS.goldIngot,
+        quantity: 3
+    },
+    {
+        item: ITEMS.stick,
+        quantity: 2
+    }
+]));
 
 ITEMS.enchantedDiamondSword.enchanted = true;
 
