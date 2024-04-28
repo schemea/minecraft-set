@@ -41,7 +41,8 @@ export function GraphComponent({ items, index }: Props) {
 
     return (
         <Isolate>
-            <svg width={ Math.max(110, x - GRAPH_GAP) } height={ height + 100 }
+            {/*<svg width={ Math.max(110, x - GRAPH_GAP) } height={ height + 100 }*/}
+            <svg width={ innerWidth } height={ height + 100 }
                  xmlns="http://www.w3.org/2000/svg"
                  xmlnsXlink="http://www.w3.org/1999/xlink"
             >
